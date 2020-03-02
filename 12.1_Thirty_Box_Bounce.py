@@ -22,3 +22,15 @@ Helpful Hints:
 4.) Also in the on_draw section draw the side rails.
 5.) In the on_update section use: for box in self.boxlist: box.update_box()
 '''
+import arcade
+import random
+
+def main():
+    arcade.open_window()
+    arcade.set_background_color()
+    arcade.start_render()
+
+    arcade.finish_render()
+    arcade.run()
+if __name__=="__main__":
+    main()

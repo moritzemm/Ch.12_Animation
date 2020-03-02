@@ -1,5 +1,5 @@
 '''
-Sign your name:________________
+Sign your name:___Emma_E_Moritz                                             ___
  
 All questions are about the final code in Chapter 12:
 
@@ -22,7 +22,5 @@ All questions are about the final code in Chapter 12:
 9.) What is this code checking?  self.pos_y > SH - self.rad:
 
 10.) What is this code checking? if self.pos_x < self.rad
-
-
 
 '''
