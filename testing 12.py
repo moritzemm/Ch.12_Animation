@@ -17,22 +17,29 @@ class Ball:
         self.pos_x+=self.dx
         self.pos_y+=self.dy
 
+        #bouncing the ball off the edges
+        if self.pos_x<self.radius or self.pos_x>SW-self.radius:
+            self.dx*=-1
+        if self.pos_y<self.radius or self.pos_y>SH-self.radius:
+            self.dy*=-1
+
 class MyGame(arcade.Window):
     '''This is my first game class'''
     def __init__(self,width,height,title):
         super().__init__(width,height,title)
         arcade.set_background_color(arcade.color.BUBBLES)
-        self.Ball=Ball(SW/2,SH/2,3,-2,15,arcade.color.AFRICAN_VIOLET)
+        self.ball=Ball(SW/2,SH/2,3,-2,15,arcade.color.AFRICAN_VIOLET)
 
     def on_draw(self):
         arcade.start_render()
         self.ball.draw_ball()
 
+    def on_update(self,dt):
+        self.ball.update_ball()
+
 def main():
     window=MyGame(SW,SH,"Animation")
     arcade.run()
-
-
 
 
 
