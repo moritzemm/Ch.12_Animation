@@ -20,7 +20,7 @@ sets the ball to the opposite direction
 8.) What is the width of the window?
 640 pixles
 9.) What is this code checking?  self.pos_y > SH - self.rad:
-that the ball wont go off the edge
+that the ball wont go off the edge, not even alittle.
 10.) What is this code checking? if self.pos_x < self.rad
 that the ball is not partially over the edge?
 '''
