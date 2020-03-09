@@ -26,7 +26,7 @@ import arcade
 import random
 
 def main():
-    arcade.open_window()
+    arcade.open_window(600,600)
     arcade.set_background_color()
     arcade.start_render()
 
