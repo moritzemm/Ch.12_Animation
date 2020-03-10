@@ -49,19 +49,24 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.BLACK)
         self.snow_list=[]
         for i in range(SF):
-            self.dy = random.randint(-4, -1)
-            self.rad=random.randint(1,3)
+            dy = random.randint(-4, -1)
+            rad=random.randint(1,3)
+            x = random.randint(0,SW)
+            y = random.randint(0,SH)
             if i == 0:
-                self.color=arcade.color.RED
+                color=arcade.color.RED
             else:
-                self.color=arcade.color.WHITE
-        self.snow=Snow(self.pos_x,self.pos_y,SW/2,SH/2,self.dy,self.rad,self.color)
-        self.snow_list.append(self.snow)
+                color=arcade.color.WHITE
+
+            snow=Snow(x,y,dy,rad,color)
+            self.snow_list.append(snow)
 
     def on_draw(self):
         arcade.start_render()
         for snow in self.snow_list:
             snow.draw_snow()
+        arcade.draw_rectangle_filled(SW/2,SH/2,10,SH,arcade.color.OTTER_BROWN)
+        arcade.draw_rectangle_filled(SW/2,SH/2,SW,10, arcade.color.OTTER_BROWN)
 
     def on_update(self,dt):
         for snow in self.snow_list:
