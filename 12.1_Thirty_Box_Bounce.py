@@ -24,13 +24,80 @@ Helpful Hints:
 '''
 import arcade
 import random
+SW=600
+SH=600
+Box_Num=30
+class Box:
+    def __init__(self,pos_x,pos_y,dx,dy,side,color):
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.dx = dx
+        self.dy = dy
+        self.side = side
+        self.color = color
+
+    def draw_box(self):
+        arcade.draw_rectangle_filled(self.pos_x,self.pos_y,self.side,self.side,self.color)
+
+    def update_box(self):
+        self.pos_y+=self.dy
+        self.pos_x+=self.dx
+
+        #bouncing off the sides and changing the color
+        if self.pos_x<30+self.side/2:#left side
+            self.dx*=-1
+            self.color=arcade.color.RED
+        if self.pos_x>SW-30-self.side/2:#right side
+            self.dx*=-1
+            self.color=arcade.color.YELLOW
+        if self.pos_y<30+self.side/2:#bottom
+            self.dy*=-1
+            self.color=arcade.color.BLUE
+        if self.pos_y>SH-30-self.side/2:#top
+            self.dy*=-1
+            self.color=arcade.color.GREEN
+
+
+
+class MyGame(arcade.Window):
+    '''This is my first game class'''
+    def __init__(self,width,height,title):
+        super().__init__(width,height,title)
+        arcade.set_background_color(arcade.color.WHITE)
+        self.box_list=[]
+        for i in range(Box_Num):
+            dy = random.randint(-5, 5)
+            dx = random.randint(-5, 5)
+            side =random.randint(10,50)
+            x = random.randint(30+int(side/2),SW-30-int(side/2))
+            y = random.randint(30+int(side/2),SH-30-int(side/2))
+            color=arcade.color.BLACK
+            if dx == 0 and dy == 0:
+                dx=100
+                dy=100
+
+            box=Box(x,y,dx,dy,side,color)
+            self.box_list.append(box)
+
+    def on_draw(self):
+        arcade.start_render()
+        for box in self.box_list:
+            box.draw_box()
+        arcade.draw_rectangle_filled(15,SH/2,30,SH-60,arcade.color.RED)
+        arcade.draw_rectangle_filled(SW-15, SH / 2, 30, SH - 60, arcade.color.YELLOW)
+        arcade.draw_rectangle_filled(SW/2, SH-15, SW - 60,30, arcade.color.GREEN)
+        arcade.draw_rectangle_filled(SW/2, 15, SW - 60, 30, arcade.color.BLUE)
+
+
+    def on_update(self,dt):
+        for box in self.box_list:
+            box.update_box()
 
 def main():
-    arcade.open_window(600,600)
-    arcade.set_background_color()
-    arcade.start_render()
-
-    arcade.finish_render()
+    window=MyGame(SW,SH,"Box_Bounce")
     arcade.run()
+
+
+
 if __name__=="__main__":
     main()
